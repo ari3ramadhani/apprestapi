@@ -5,10 +5,12 @@ exports.ok = function (values, res) {
         'status': 200,
         'values': values
     };
+    
+    console.log(values)
 
     res.json(data);
     res.end();
-}
+}; 
 
 //reesponse untuk nested matakuliah
 exports.oknested = function (values, res) {
