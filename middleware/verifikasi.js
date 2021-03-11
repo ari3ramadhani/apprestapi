@@ -16,9 +16,16 @@ function verifikasi() {
                     if (role == 2) {
                         req.auth = decoded;
                         next();
+                    }else if (role == 1) {
+                        req.auth = decoded;
+                        next();
                     } else {
-                        return rest.status(401).send({ auth: false, message: "Gagal mengaotorisasi role anda" });
+                        req.auth = decoded;
+                        next();
                     }
+                    // else {
+                    //     return rest.status(401).send({ auth: false, message: "Gagal mengaotorisasi role anda" });
+                    // }
                 }
             });
         } else {

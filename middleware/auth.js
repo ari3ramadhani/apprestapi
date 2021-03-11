@@ -66,6 +66,9 @@ exports.login = function(req,res){
                     expiresIn :1440
                 });
                 id_user = rows[0].id;
+// tambah row username
+                username = rows[0].username
+
 
                 var data ={
                     id_user:id_user,
@@ -85,7 +88,9 @@ exports.login = function(req,res){
                             success:true,
                             message:'TOken JWT tergenerate',
                             token:token,
-                            currUser:data.id_user
+                            currUser:data.id_user,
+        //2 tambahkan user
+                            user:username
                         })
                     }
                 });
@@ -97,4 +102,15 @@ exports.login = function(req,res){
 }
 exports.halamanrahasia = function(req,res){
     response.ok("Halaman ini hanya untuk user role 2",res)
+}
+
+//menampilkan semua data mahasiswa
+exports.adminmahasiswa = function(req,res){
+    connection.query("Select * FROM mahasiswa", function(error, rows,fields){
+        if(error){
+            console.log(error);
+        }else{
+            response.ok(rows,res)
+        }
+    })
 }
